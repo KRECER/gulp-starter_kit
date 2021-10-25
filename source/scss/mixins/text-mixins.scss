@@ -1,0 +1,9 @@
+@mixin hide-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  clip: rect(0 0 0 0);
+}

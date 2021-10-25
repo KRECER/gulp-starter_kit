@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "parser": "@babel/eslint-parser",
+  "extends": "eslint:recommended",
+  "globals": {
+    "require": true
+  },
+  "rules": {
+    "strict": 0
+  },
+  "parserOptions": {
+    "requireConfigFile": false
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

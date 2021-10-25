@@ -1,0 +1,74 @@
+{
+  "name": "gulp-starter-kit",
+  "version": "1.0.0",
+  "description": "Startkit for HTML/CSS/JS pages layout.",
+  "author": "Ihor Sudenko",
+  "license": "WTFPL",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KRECER/gulp-starter_kit.git"
+  },
+  "scripts": {
+    "test": "npm run test:style && npm run test:js",
+    "test:style": "npx stylelint \"source/scss/**/*.scss\" --syntax=scss",
+    "test:js": "eslint source/js/**/*.js",
+    "lint-staged": "lint-staged",
+    "start": "cross-env MODE=development npx gulp",
+    "build": "cross-env MODE=production npx gulp build"
+  },
+  "keywords": [],
+  "lint-staged": {
+    "*.{js,md}": "editorconfig-cli",
+    "*.scss": "stylelint --syntax=scss",
+    "*.js": "eslint"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@htmlacademy/editorconfig-cli": "^1.0.0",
+    "acorn": "^8.5.0",
+    "autoprefixer": "^9.0.0",
+    "babel-loader": "^8.2.3",
+    "browser-sync": "^2.27.5",
+    "cross-env": "^7.0.3",
+    "css-mqpacker": "^7.0.0",
+    "del": "^6.0.0",
+    "eslint": "^8.1.0",
+    "gulp": "^4.0.2",
+    "gulp-csso": "^4.0.1",
+    "gulp-debug": "^4.0.0",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-posthtml": "^3.0.5",
+    "gulp-pretty-html": "^2.0.10",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-sass-glob": "^1.1.0",
+    "gulp-svgstore": "^8.0.0",
+    "gulp-webp": "^4.0.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.4",
+    "postcss-inline-svg": "^5.0.0",
+    "posthtml-include": "^1.7.2",
+    "sass": "^1.43.3",
+    "stylelint": "^10.0.0",
+    "stylelint-config-htmlacademy": "^0.1.10",
+    "stylelint-order": "^5.0.0",
+    "stylelint-selector-bem-pattern": "^2.1.1",
+    "webpack": "^5.59.1",
+    "webpack-stream": "^7.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "autosize": "^5.0.1",
+    "baron": "^3.0.3",
+    "choices.js": "^9.0.1",
+    "closest": "0.0.1",
+    "postcss": "^8.3.11"
+  }
+}

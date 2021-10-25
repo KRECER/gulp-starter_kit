@@ -1,0 +1,5 @@
+# перечисление игнорируемых stylelint-ом файлов
+source/scss/style.scss
+source/scss/components/page.scss
+build/css/style.css
+build/css/style.min.css

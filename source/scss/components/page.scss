@@ -1,0 +1,340 @@
+// Стилизация БЭМ-блока page.
+// Общие стили тегов.
+// Подключение шрифтов.
+// Типографика.
+
+// stylelint-disable plugin/selector-bem-pattern
+
+// Сделаем viewport великим снова! (привет, IE10) http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
+@at-root {
+
+  @-ms-viewport { // stylelint-disable-line
+    width: device-width;
+  }
+}
+
+
+/* stylelint-disable */
+// @font-face {
+//   font-family: 'FONTNAME';
+//   src: url('../fonts/FONTNAME.woff2') format('woff2'),
+//        url('../fonts/FONTNAME.woff') format('woff');
+//   font-weight: 400;
+//   font-style: normal;
+//   font-display: swap;
+// }
+/* stylelint-enable */
+
+
+.page {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%; // stylelint-disable-line
+  min-width: 320px;
+  min-height: 100%;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  &__content {
+    flex-grow: 1;
+  }
+
+  &__footer-wrap {
+    flex-shrink: 0;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  display: flex;           // Исправляем баг в IE для min-height and flexbox (flex-direction:column)
+  flex-direction: column;  // и прижимаем footer в IE 10-11
+  min-height: 100%;
+  margin: 0;
+  word-break: break-word;
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+  text-align: left;
+  color: $text-color;
+  background-color: $body-bg;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[tabindex='-1']:focus {
+  outline: none !important; // stylelint-disable-line
+}
+
+// Коррекция для кликабельных элементов с указанной ролью в iOS
+[role='button'] {
+  cursor: pointer;
+}
+
+// Мы любим Сафари (на самом деле, нет).
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none; // stylelint-disable-line
+}
+
+// area,
+// summary,
+a,
+button,
+[role='button'],
+input,
+label,
+select,
+textarea {
+  touch-action: manipulation; // Стилевая коррекция 300ms задержки (для поддерживающих браузеров)
+  margin: 0;                  // Убираем margin в Firefox и Safari
+}
+
+button,
+input {
+  overflow: visible;    // Покажем торчащее в Edge
+  text-transform: none; // Уберём наследование text transform в Firefox
+}
+
+// Коррекция проблем стилизации для Safari
+button,
+html [type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button; // stylelint-disable-line
+}
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+// Коррекция для Mobile Safari (https://github.com/twbs/bootstrap/issues/11266)
+input[type='date'],
+input[type='time'],
+input[type='datetime-local'],
+input[type='month'] {
+  -webkit-appearance: listbox; // stylelint-disable-line
+}
+
+textarea {
+  overflow: auto;   // Удаление верт. скролла в IE.
+  resize: vertical; // Правильное изменение размеров
+}
+
+svg {
+  fill: currentColor;
+
+  a &,
+  button & {
+    pointer-events: none; // Мы любим Edge, это браузер! (почти)
+  }
+
+  &:not(:root) {
+    overflow: hidden; // Скрыть выступающее за границы в IE
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: $link-color;
+  background-color: transparent;
+  transition: color 0.3s;
+
+  &:hover,
+  &:focus {
+    color: $link-color--hover;
+  }
+
+  // &:visited {
+  //   color: $link-color--hover;
+  // }
+
+  &[href^='tel:'] {
+
+    // На больших экранах телефоны-ссылки делаем обычным текстом
+    @media (min-width: $screen-xl) {
+      white-space: nowrap;
+      pointer-events: none;
+      text-decoration: inherit;
+      color: inherit;
+    }
+  }
+}
+
+hr {
+  box-sizing: content-box; // Проблема Firefox
+  height: 0;               // Проблема Firefox
+  margin-top: $typo-margin-vertical * 2;
+  margin-bottom: $typo-margin-vertical * 2;
+  border: 0;
+  border-top: 1px solid $border-color;
+  overflow: visible;       // Проблема Edge и IE
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-family: $font-family;
+  font-weight: 700;
+  line-height: 1.2;
+  color: currentColor;
+}
+
+h1 { font-size: $font-size-h1; } // stylelint-disable-line
+h2 { font-size: $font-size-h2; } // stylelint-disable-line
+h3 { font-size: $font-size-h3; } // stylelint-disable-line
+h4 { font-size: $font-size-h4; } // stylelint-disable-line
+h5 { font-size: $font-size-h5; } // stylelint-disable-line
+h6 { font-size: $font-size-h6; } // stylelint-disable-line
+
+p,
+ul,
+ol,
+dl,
+table,
+blockquote,
+pre,
+address,
+figure {
+  margin-top: 0;
+  margin-bottom: $typo-margin-vertical;
+}
+
+p {
+  // http://clagnut.com/blog/2395
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  hyphenate-limit-lines: 2;
+  hyphenate-limit-last: always;
+  hyphenate-limit-zone: 8%;
+}
+
+address {
+  font-style: normal;
+}
+
+ul,
+ol {
+  margin-bottom: $typo-margin-vertical;
+  padding-left: 1.5em;
+
+  ul,
+  ol {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+li {
+  line-height: inherit;
+}
+
+// dt {
+//   font-weight: 700;
+// }
+
+// dd {
+//   margin-left: 0;
+
+//   @media (min-width: $screen-sm) {
+//     margin-left: 1.5rem;
+//   }
+
+//   & + dt {
+//     margin-top: ($line-height / 2);
+//   }
+// }
+
+// .small,
+small {
+  font-size: $font-size-sm;
+}
+
+sub,
+sup {
+  font-size: $font-size-sm;
+}
+
+// .mark,
+// mark {
+//   background: rgba($color-warning, 0.3);
+//   padding: 0.1em 0.3em;
+// }
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+// abbr[title] {
+//   text-decoration: underline dotted;
+// }
+
+blockquote {
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// samp,
+code,
+kbd,
+pre {
+  font-family: $font-family--monospace;
+}
+
+code {
+  padding: 0.06em 0.3em;
+  color: $text-color;
+  background-color: rgba(#000, 0.08);
+  border-radius: $border-radius;
+}
+
+kbd {
+  padding: 0.06em 0.3em;
+  color: $text-color;
+  background-color: $gray-lightest;
+  border-radius: $border-radius;
+
+  kbd {
+    padding: 0;
+  }
+}
+
+pre {
+  display: block;
+  width: 100%;
+  margin-bottom: $typo-margin-vertical;
+  overflow-x: auto;
+  tab-size: 2;
+  background-color: rgba(#000, 0.08);
+
+  code {
+    background: transparent;
+  }
+}
